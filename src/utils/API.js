@@ -14,7 +14,7 @@ function onlyComments(posts) {
 }
 
 function onlyPosts(posts) {
-  return posts.filter(({ type }) => type === "post");
+  return posts.filter(({ type }) => type === "story");
 }
 
 function fetchItem(id) {
@@ -29,14 +29,13 @@ export function fetchComments(ids) {
 
 export function fetchMainPosts(type) {
   return fetch(`${api}/${type}stories${json}`)
-    .then((res) => {
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((ids) => {
       if (!ids) {
-        throw new Error(`There was an error fetching ${type} posts`);
+        throw new Error(`There was an error fetching the ${type} posts.`);
       }
-      return ids.slice(0, 30);
+
+      return ids.slice(0, 50);
     })
     .then((ids) => Promise.all(ids.map(fetchItem)))
     .then((posts) => removeDeleted(onlyPosts(removeDead(posts))));

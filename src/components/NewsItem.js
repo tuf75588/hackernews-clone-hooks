@@ -1,7 +1,11 @@
 import React from "react";
 
-function NewsItem(props) {
-  return <div>yadda yadda</div>;
+function NewsItem({ time, title, by, href, createdAt }) {
+  return (
+    <li className="container">
+      <p>{title}</p>
+    </li>
+  );
 }
 
 export default NewsItem;
