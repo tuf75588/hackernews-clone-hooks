@@ -3,6 +3,11 @@ import React from "react";
 function Navbar() {
   return (
     <ul className="nav">
+      <img
+        src="https://news.ycombinator.com/y18.gif"
+        alt="logo for hackernews"
+        className="avatar"
+      />
       <p className="logo">Hacker News</p>
       <li>
         top <span className="divider">|</span>
