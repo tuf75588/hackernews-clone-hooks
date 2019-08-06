@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
 }
-
 body {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -17,6 +16,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+li {
+  list-style-type: none;
 }
 .nav {
   margin-top: 0.5em;
@@ -39,4 +41,23 @@ code {
 .avatar {
   margin-right: 10px;
   outline: 1px solid white;
+}
+
+.news-list {
+  padding: 20px;
+}
+.news-list li {
+  padding: 2px;
+}
+
+.news-list li p {
+  font-size: 7pt;
+  color: #828282;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 10pt;
 }

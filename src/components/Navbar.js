@@ -1,5 +1,5 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 function Navbar() {
   return (
     <ul className="nav">
@@ -10,16 +10,19 @@ function Navbar() {
       />
       <p className="logo">Hacker News</p>
       <li>
-        top <span className="divider">|</span>
+        <NavLink exact to="/">
+          top
+        </NavLink>{" "}
+        <span className="divider">|</span>
       </li>
       <li>
-        new <span className="divider">|</span>
+        <NavLink to="/new">new</NavLink> <span className="divider">|</span>
       </li>
       <li>
-        ask <span className="divider">|</span>
+        <NavLink to="/ask">ask</NavLink> <span className="divider">|</span>
       </li>
       <li>
-        show <span className="divider">|</span>
+        <NavLink to="/show">show</NavLink> <span className="divider">|</span>
       </li>
       <li>jobs</li>
     </ul>

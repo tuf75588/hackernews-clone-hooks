@@ -1,10 +1,18 @@
 import React from "react";
 
-function NewsItem({ time, title, by, href, createdAt }) {
+function NewsItem({ posts }) {
+  console.log(posts);
   return (
-    <li className="container">
-      <p>{title}</p>
-    </li>
+    <ul className="news-list">
+      {posts.map((post, i) => (
+        <li className="meta">
+          <span className="title">{post.title}</span>
+          <p>
+            {post.score} points by {post.by}
+          </p>
+        </li>
+      ))}
+    </ul>
   );
 }
 

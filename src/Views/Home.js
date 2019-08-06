@@ -11,24 +11,13 @@ function Home(props) {
       setPosts(res);
       setLoading(false);
     });
-  }, [setPosts]);
+  }, []);
   console.log(posts);
   return (
     <div>
       <Navbar />
       {loading && <h3>Fetching stories...</h3>}
-      <ul>
-        {posts &&
-          posts.map(({ by, title, url, type, time }) => (
-            <NewsItem
-              title={title}
-              user={by}
-              createdAt={time}
-              href={url}
-              type={type}
-            />
-          ))}
-      </ul>
+      {posts && <NewsItem posts={posts} />}
     </div>
   );
 }
