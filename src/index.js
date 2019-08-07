@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Home from "./Views/Home";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Posts from "./components/Posts";
 function App() {
   return (
     <Router>
       <div>
-        <Route path="/" exact component={Home} />
+        <Navbar />
+        <Route path="/" exact render={() => <Posts type="top" />} />
       </div>
     </Router>
   );
