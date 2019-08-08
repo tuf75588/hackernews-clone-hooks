@@ -4,11 +4,15 @@ function postReducer(state, action) {
   if (action.type === "fetch") {
     return {
       ...state,
-      posts: [...action.posts]
+      loading: action.loading,
+      error: false
     };
-  } else if (action.type === "sucess") {
+  } else if (action.type === "success") {
     return {
-      posts: "hey"
+      ...state,
+      data: [...action.posts],
+      loading: action.loading,
+      error: action.error
     };
   }
 }
@@ -20,27 +24,18 @@ function Posts({ type }) {
     error: false
   });
   React.useEffect(() => {
+    dispatch({ type: "fetch", loading: true });
     fetchMainPosts(type).then((res) => {
-      dispatch({ type: "fetch", posts: res });
+      console.log(res);
+      dispatch({ type: "success", posts: res, error: false, loading: false });
     });
   }, [type]);
-  console.log(state.posts);
-  const { posts } = state;
+  console.log(state);
+
   return (
-    <ul className="news-list">
-      {posts &&
-        posts.map((post, i) => {
-          return (
-            <li key={post.id}>
-              <span className="title">{post.title}</span>
-              <p>
-                {post.score} points by {post.by} {post.time} hours ago |{" "}
-                {post.descendants} comments
-              </p>
-            </li>
-          );
-        })}
-    </ul>
+    <div className="test">
+      <h1>{state.loading && <h1>Loading..</h1>}</h1>
+    </div>
   );
 }
 
