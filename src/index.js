@@ -10,6 +10,7 @@ function App() {
       <div>
         <Navbar />
         <Route path="/" exact render={() => <Posts type="top" />} />
+        <Route path="/new" render={() => <Posts type="new" />} />
       </div>
     </Router>
   );

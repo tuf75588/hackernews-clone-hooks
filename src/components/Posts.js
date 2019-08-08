@@ -24,8 +24,24 @@ function Posts({ type }) {
       dispatch({ type: "fetch", posts: res });
     });
   }, [type]);
-  console.log(state);
-  return <ul className="news-list">h</ul>;
+  console.log(state.posts);
+  const { posts } = state;
+  return (
+    <ul className="news-list">
+      {posts &&
+        posts.map((post, i) => {
+          return (
+            <li key={post.id}>
+              <span className="title">{post.title}</span>
+              <p>
+                {post.score} points by {post.by} {post.time} hours ago |{" "}
+                {post.descendants} comments
+              </p>
+            </li>
+          );
+        })}
+    </ul>
+  );
 }
 
 export default Posts;
