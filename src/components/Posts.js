@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchMainPosts } from "../utils/API";
-import Post from "./Post";
+import PostMetaInfo from "./PostMetaInfo";
+
 function postReducer(state, action) {
   if (action.type === "fetch") {
     return {
@@ -49,7 +50,7 @@ function Posts({ type }) {
       <div>
         {state.error && <p style={{ textAlign: "center" }}>{state.error}</p>}
         {state.posts && (
-          <Post
+          <PostMetaInfo
             posts={state.posts}
             loading={state.loading}
             error={state.error}
