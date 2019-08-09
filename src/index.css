@@ -17,6 +17,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+ul {
+  padding: 0;
+}
 li {
   list-style-type: none;
 }
@@ -28,6 +31,7 @@ li {
   font-size: 0.85em;
   padding-left: 1em;
 }
+
 .nav li {
   list-style-type: none;
   margin: 5px;
@@ -42,22 +46,25 @@ li {
   margin-right: 10px;
   outline: 1px solid white;
 }
-
-.news-list {
-  padding: 20px;
-}
-.news-list li {
-  padding: 2px;
-}
-
-.news-list li p {
-  font-size: 7pt;
-  color: #828282;
-}
-.meta {
+.post-list {
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
-.title {
+.list-items {
+  padding: 2px;
   font-size: 10pt;
+}
+
+.upvote {
+  padding-top: 5px;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+}
+.meta-info {
+  padding-left: 40px;
+  font-size: 7pt;
+  color: #828282;
 }

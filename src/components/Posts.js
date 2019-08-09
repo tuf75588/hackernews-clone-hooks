@@ -1,40 +1,61 @@
 import React from "react";
 import { fetchMainPosts } from "../utils/API";
+import Post from "./Post";
 function postReducer(state, action) {
   if (action.type === "fetch") {
     return {
-      ...state,
-      loading: action.loading,
-      error: false
+      posts: null,
+      loading: true,
+      error: null
     };
   } else if (action.type === "success") {
     return {
-      ...state,
-      data: [...action.posts],
-      loading: action.loading,
-      error: action.error
+      posts: action.posts,
+      loading: false,
+      error: null
     };
+  } else if (action.type === "error") {
+    return {
+      posts: null,
+      loading: false,
+      error: action.message
+    };
+  } else {
+    throw new Error("Action type not recognized");
   }
 }
 
 function Posts({ type }) {
   const [state, dispatch] = React.useReducer(postReducer, {
-    data: null,
+    posts: null,
     loading: true,
     error: false
   });
   React.useEffect(() => {
-    dispatch({ type: "fetch", loading: true });
-    fetchMainPosts(type).then((res) => {
-      console.log(res);
-      dispatch({ type: "success", posts: res, error: false, loading: false });
-    });
+    dispatch({ type: "fetch" });
+    fetchMainPosts(type)
+      .then((res) => {
+        dispatch({ type: "success", posts: res });
+      })
+      .catch((err) => {
+        dispatch({ type: "error", message: err.message });
+      });
   }, [type]);
-  console.log(state);
 
   return (
     <div className="test">
-      <h1>{state.loading && <h1>Loading..</h1>}</h1>
+      {state.loading && <h1>Loading..</h1>}
+
+      <div>
+        {state.error && <p style={{ textAlign: "center" }}>{state.error}</p>}
+        {state.posts && (
+          <Post
+            posts={state.posts}
+            loading={state.loading}
+            error={state.error}
+          />
+        )}
+      </div>
     </div>
   );
 }
