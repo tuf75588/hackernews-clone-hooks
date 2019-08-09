@@ -1,4 +1,5 @@
 import React from "react";
+import PostMetaInfo from "./PostMetaInfo";
 
 // Individual Post component
 
@@ -18,9 +19,17 @@ function Post({ posts, loading, error }) {
                 alt={`upvote icon for ${post.title}`}
                 className="upvote"
               />
-              <span>{title}</span>
+              <span className="title">{title}</span>
             </div>
-            <div className="meta-info">new line</div>
+            <div className="meta-info">
+              <PostMetaInfo
+                author={by}
+                time={time}
+                url={url}
+                score={post.score}
+                comments={post.descendants}
+              />
+            </div>
           </li>
         );
       })}
