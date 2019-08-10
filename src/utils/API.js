@@ -17,16 +17,15 @@ function onlyPosts(posts) {
   return posts.filter(({ type }) => type === "story");
 }
 
-function fetchItem(id) {
+export function fetchItem(id) {
   return fetch(`${api}/item/${id}${json}`).then((res) => res.json());
 }
 
 export function fetchComments(ids) {
-  return Promise.all(ids.map(fetchItem)).then((comments) => {
-    removeDeleted(onlyComments(removeDead(comments)));
-  });
+  return Promise.all(ids.map(fetchItem)).then((comments) =>
+    removeDeleted(onlyComments(removeDead(comments)))
+  );
 }
-
 export function fetchMainPosts(type) {
   return fetch(`${api}/${type}stories${json}`)
     .then((res) => res.json())

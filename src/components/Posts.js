@@ -2,7 +2,7 @@ import React from "react";
 import { fetchMainPosts } from "../utils/API";
 import PostMetaInfo from "./PostMetaInfo";
 
-function postReducer(state, action) {
+function postsReducer(state, action) {
   if (action.type === "fetch") {
     return {
       posts: null,
@@ -27,7 +27,7 @@ function postReducer(state, action) {
 }
 
 function Posts({ type }) {
-  const [state, dispatch] = React.useReducer(postReducer, {
+  const [state, dispatch] = React.useReducer(postsReducer, {
     posts: null,
     loading: true,
     error: false
