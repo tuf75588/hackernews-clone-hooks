@@ -52,7 +52,6 @@ function Post(props) {
         return fetchComments(post.kids || []);
       })
       .then((comments) => {
-        console.log(comments);
         dispatch({ type: "comments", comments });
       })
       .catch((error) => {
@@ -60,6 +59,14 @@ function Post(props) {
       });
   }, [id]);
 
-  return <div>POSTS PAGE</div>;
+  return (
+    <div className="comments-section">
+      {comments &&
+        comments.map((comment, i) => {
+          console.log(comment);
+          return <li key={comment.id}>{comment.by}</li>;
+        })}
+    </div>
+  );
 }
 export default Post;
