@@ -18,13 +18,6 @@ function Navbar() {
       <li>
         <NavLink to="/new">new</NavLink> <span className="divider">|</span>
       </li>
-      <li>
-        <NavLink to="/ask">ask</NavLink> <span className="divider">|</span>
-      </li>
-      <li>
-        <NavLink to="/show">show</NavLink> <span className="divider">|</span>
-      </li>
-      <li>jobs</li>
     </ul>
   );
 }
