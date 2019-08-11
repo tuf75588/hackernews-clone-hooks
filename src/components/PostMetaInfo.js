@@ -1,8 +1,9 @@
 import React from "react";
-import Title from "./Title";
+
 import formatTime from "../utils/helpers";
 import { Link } from "react-router-dom";
-function PostMetaInfo({ by, score, descendants, time, id }) {
+
+function PostMetaInfo({ by, score, descendants, time, id, rank, url }) {
   return (
     <React.Fragment>
       <div className="meta-info">

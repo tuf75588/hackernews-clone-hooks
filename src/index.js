@@ -9,7 +9,7 @@ import User from "./views/User";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="main-container">
         <Navbar />
         <Switch>
           <Route path="/" exact render={() => <Posts type="top" />} />

@@ -1,7 +1,8 @@
 import React from "react";
 import queryString from "query-string";
 import { fetchComments, fetchItem } from "../utils/API";
-
+import Comment from "../components/Comment";
+import Title from "../components/Title";
 function postReducer(state, action) {
   //do some stuff
   if (action.type === "fetch") {
@@ -60,13 +61,22 @@ function Post(props) {
   }, [id]);
 
   return (
-    <div className="comments-section">
-      {comments &&
-        comments.map((comment, i) => {
-          console.log(comment);
-          return <li key={comment.id}>{comment.by}</li>;
-        })}
-    </div>
+    <ul className="comments-section">
+      <div style={{ marginTop: "1em" }}>
+        {state.post && <Title title={state.post.title} link={state.post.url} />}
+      </div>
+      <div style={{ marginTop: "1em" }}>
+        {comments &&
+          comments.map((comment, i) => {
+            const { by, id, text, time, kids } = comment;
+            return (
+              <li key={id}>
+                <Comment text={text} user={by} time={time} comments={comment} />
+              </li>
+            );
+          })}
+      </div>
+    </ul>
   );
 }
 export default Post;
