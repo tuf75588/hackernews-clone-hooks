@@ -52,7 +52,7 @@ function User({ location }) {
       .then((user) => {
         dispatch({ type: "user", user });
         const { submitted } = user;
-        return fetchPosts(submitted.slice(0, 50));
+        return fetchPosts(submitted.slice(0, 50) || []);
       })
       .then((posts) => {
         dispatch({ type: "posts", posts });
@@ -61,7 +61,8 @@ function User({ location }) {
         dispatch({ type: "error", message: error.message });
       });
   }, [userId]);
-  const { user } = state;
+  const { user, posts, loadingPosts } = state;
+
   return (
     <div>
       {state.loadingUser && <h1>Loading User...</h1>}
@@ -72,6 +73,14 @@ function User({ location }) {
           <p>{user.about}</p>
         </div>
       )}
+      {loadingPosts && <h3>Fetching User Posts</h3>}
+      <ul>
+        {state.posts &&
+          !loadingPosts &&
+          posts.map((post) => {
+            return <li key={post.id}>{post.title}</li>;
+          })}
+      </ul>
     </div>
   );
 }
