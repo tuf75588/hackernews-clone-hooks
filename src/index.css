@@ -121,3 +121,16 @@ li {
 .user-container p {
   margin-top: 10px;
 }
+.userLink {
+  text-decoration: none;
+  color: inherit;
+}
+.userLink:hover {
+  text-decoration: underline;
+}
+.userPosts {
+  padding-left: 1em;
+}
+.userPosts li {
+  padding-top: 1em;
+}

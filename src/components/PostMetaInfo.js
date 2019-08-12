@@ -14,6 +14,7 @@ function PostMetaInfo({ by, score, descendants, time, id, url }) {
               pathname: "/user",
               search: `?userId=${by}`
             }}
+            className="userLink"
           >
             {by}
           </Link>{" "}

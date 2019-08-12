@@ -2,6 +2,8 @@ import React from "react";
 import queryString from "query-string";
 import { fetchUser, fetchPosts } from "../utils/API";
 import formatTime from "../utils/helpers";
+import PostMetaInfo from "../components/PostMetaInfo";
+import Title from "../components/Title";
 function userReducer(state, action) {
   const { type } = action;
   if (type === "fetch") {
@@ -45,6 +47,7 @@ const initialState = {
 function User({ location }) {
   const { userId } = queryString.parse(location.search);
   const [state, dispatch] = React.useReducer(userReducer, initialState);
+  //by, score, descendants, time, id, url
   console.log(state);
   React.useEffect(() => {
     dispatch({ type: "fetch" });
@@ -62,7 +65,7 @@ function User({ location }) {
       });
   }, [userId]);
   const { user, posts, loadingPosts } = state;
-
+  console.log(posts);
   return (
     <div>
       {state.loadingUser && <h1>Loading User...</h1>}
@@ -70,15 +73,37 @@ function User({ location }) {
         <div className="user-container">
           <p>{user.id}</p>
           <p>joined {formatTime(user.created)}</p>
-          <p>{user.about}</p>
+          <p dangerouslySetInnerHTML={{ __html: user.about }} />
         </div>
       )}
-      {loadingPosts && <h3>Fetching User Posts</h3>}
-      <ul>
+
+      {loadingPosts && (
+        <h3 style={{ marginTop: "10px" }}>Fetching User Posts</h3>
+      )}
+
+      <ul className="userPosts">
+        {state.posts && (
+          <React.Fragment>
+            <hr style={{ width: "25%", marginTop: "10px" }} />
+            <h3 style={{ marginTop: "10px" }}>User Posts:</h3>
+          </React.Fragment>
+        )}
+
         {state.posts &&
           !loadingPosts &&
           posts.map((post) => {
-            return <li key={post.id}>{post.title}</li>;
+            return (
+              <li key={post.id}>
+                <Title title={post.title} link={post.url} />
+                <PostMetaInfo
+                  by={post.by}
+                  score={post.score}
+                  descendants={post.descendants}
+                  time={post.time}
+                  url={post.url}
+                />
+              </li>
+            );
           })}
       </ul>
     </div>

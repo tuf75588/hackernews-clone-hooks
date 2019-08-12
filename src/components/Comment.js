@@ -6,7 +6,10 @@ function Comment({ text, user, time, kids, comments }) {
   return (
     <div className="comment">
       <p className="comment-user">
-        <Link to={{ pathname: "/user", search: `?userId=${user}` }}>
+        <Link
+          to={{ pathname: "/user", search: `?userId=${user}` }}
+          className="userLink"
+        >
           {user}
         </Link>{" "}
         at {formatTime(time)}{" "}
