@@ -106,3 +106,18 @@ li {
   margin: 5px;
   font-size: 9pt;
 }
+.reply {
+  font-size: 6pt;
+  color: #828282;
+}
+.comment-user {
+  color: #828282;
+  font-size: 7pt;
+}
+.user-container {
+  margin-top: 2em;
+  padding-left: 1em;
+}
+.user-container p {
+  margin-top: 10px;
+}

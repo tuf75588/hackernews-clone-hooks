@@ -1,14 +1,15 @@
 import React from "react";
 import formatTime from "../utils/helpers";
 import { fetchComments } from "../utils/API";
-
+import { Link } from "react-router-dom";
 function Comment({ text, user, time, kids, comments }) {
-  const [commentReplies, setReplies] = React.useState([]);
-
   return (
-    <div className="comment" style={{ border: "1px solid black" }}>
-      <p>
-        {user} at {formatTime(time)}
+    <div className="comment">
+      <p className="comment-user">
+        <Link to={{ pathname: "/user", search: `?userId=${user}` }}>
+          {user}
+        </Link>{" "}
+        at {formatTime(time)}{" "}
       </p>
       <p dangerouslySetInnerHTML={{ __html: text }} />
     </div>

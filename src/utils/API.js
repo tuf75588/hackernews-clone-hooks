@@ -45,7 +45,7 @@ export function fetchUser(id) {
 }
 
 export function fetchPosts(ids) {
-  return Promise.all(ids.map(fetchItem)).then((posts) => {
-    removeDeleted(onlyPosts(removeDead(posts)));
-  });
+  return Promise.all(ids.map(fetchItem)).then((posts) =>
+    removeDeleted(onlyPosts(removeDead(posts)))
+  );
 }

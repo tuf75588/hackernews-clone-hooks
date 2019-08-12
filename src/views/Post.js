@@ -3,6 +3,7 @@ import queryString from "query-string";
 import { fetchComments, fetchItem } from "../utils/API";
 import Comment from "../components/Comment";
 import Title from "../components/Title";
+import PostMetaInfo from "../components/PostMetaInfo";
 function postReducer(state, action) {
   //do some stuff
   if (action.type === "fetch") {
@@ -53,7 +54,9 @@ function Post(props) {
         return fetchComments(post.kids || []);
       })
       .then((comments) => {
-        dispatch({ type: "comments", comments });
+        setTimeout(() => {
+          dispatch({ type: "comments", comments });
+        }, 2000);
       })
       .catch((error) => {
         dispatch({ type: "error", message: error.message });
@@ -64,8 +67,18 @@ function Post(props) {
     <ul className="comments-section">
       <div style={{ marginTop: "1em" }}>
         {state.post && <Title title={state.post.title} link={state.post.url} />}
+        {state.post && (
+          <PostMetaInfo
+            by={state.post.by}
+            score={state.post.score}
+            time={state.post.time}
+            id={state.post.id}
+            descendants={state.post.descendants}
+          />
+        )}
       </div>
       <div style={{ marginTop: "1em" }}>
+        {!comments && <p>Fetching comments..</p>}
         {comments &&
           comments.map((comment, i) => {
             const { by, id, text, time, kids } = comment;
